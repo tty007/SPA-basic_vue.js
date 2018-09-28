@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>SPA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <nav>
+        <router-link to="/top">トップページ</router-link>
+        <router-link to="/users">ユーザー一覧ページ</router-link>
+      </nav>
+      <router-view></router-view>
+    </div>
+    <!-- 必要な分のコンポーネント定義 -->
+    <script type="text/x-template" id="user-list">
+      <div>ユーザ一覧ページです</div>
+    </script>
+
+    <!-- 任意のJS実装 -->
+    <script>
+      var UserList = {
+        template: '#user-list'
+      }
+
+      var router = new VueRouter({
+        routes: [
+          {
+            path: '/top',
+            component: {
+              template: '<div>トップページです。</div>'
+            }
+          },
+          {
+            path: '/users',
+            component: UserList
+          }
+        ]
+      })
+
+      var app = new Vue({
+        el: '#app',
+        router: router
+      })
+    </script>
+  </body>
+</html>>
